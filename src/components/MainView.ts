@@ -1,8 +1,6 @@
 import NorthPanel from "./NorthPanel";
 import { Main as SouthPanel } from './SouthPanel/Main';
 
-import { MainView as apiView } from './Swagger/MainView'
-
 const eastPanel: Ext.panel.PanelConfig = {
     collapsible: true,
     region: "east",
@@ -57,7 +55,7 @@ const removeZhuanyi = (oldValue: string) => {
     return oldValue.replace(/\\\\/g, "\\").replace(/\\\"/g, "\"");
 }
 
-// http://www.bejson.com/jsonviewernew/
+
 const jsonPanel: Ext.panel.PanelConfig = {
     layout: "fit",
     title: 'JSON处理',
@@ -204,7 +202,7 @@ const jsonPanel: Ext.panel.PanelConfig = {
 
 const centerPanel: Ext.tab.PanelConfig = {
     activeTab: 0,
-    items: [apiView, jsonPanel],
+    items: [jsonPanel],
     region: "center",
     xtype: 'tabpanel'
 };
