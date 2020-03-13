@@ -1,0 +1,22 @@
+{
+  "name": "sencha-ts-demo",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@types/node": "^12.12.7",
+    "markdown-it": "^10.0.0",
+    "sencha-types": "0.0.9"
+  },
+  "scripts": {
+    "start": "webpack",
+    "server": "webpack-dev-server --open",
+    "build": "webpack --mode production"
+  },
+  "devDependencies": {
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.3.3",
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.1.14"
+  }
+}
