@@ -1,15 +1,21 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const publishPath = __dirname + "/build/publish/";
-const buildJsName = "bundle.js";
+import webpack = require('webpack');
+import HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = (env, argv) => {
-    console.info("测试一下");
-    console.info(JSON.stringify(argv));
+
+
+const configFn = (env: any, argv: any): webpack.Configuration => {
+    const rootDir = __dirname;
+    const publishPath = rootDir + "/build/publish/";
+    const buildJsName = "bundle.js";
     const envMode = argv.mode;
-    var config = {
+    console.info("如果需要修改webpack配置，请修改webpack.config.ts,不要修改webpack.config.js");
+    console.info("测试一下"+rootDir);
+    console.info(JSON.stringify(argv));
+
+    const config: webpack.Configuration = {
         //唯一入口文件
         entry: {
-            index: __dirname + "/src/index.ts"
+            index: rootDir + "/src/index.ts"
         },
         output: {
             //打包后的文件存放的地方
@@ -18,8 +24,7 @@ module.exports = (env, argv) => {
             filename: buildJsName//打包后输出文件的文件名
         },
         devServer: {
-            contentBase: __dirname + "/public",
-
+            contentBase: rootDir + "/public"
         },
         devtool: envMode === "production" ? "cheap-module-source-map" : "source-map",
         module: {
@@ -37,7 +42,7 @@ module.exports = (env, argv) => {
         plugins: [
             new HtmlWebpackPlugin({
                 title: envMode === 'production' ? "JSON TOOL." : "JSON TOOL.(" + envMode + ")",
-                template: __dirname + '/public/index.html',
+                template: rootDir + '/public/index.html',
                 filename: publishPath + 'index.html',
                 chunks: ['index'],
                 inject: true,
@@ -45,5 +50,7 @@ module.exports = (env, argv) => {
             })
         ]
     };
+
     return config;
-};
+}
+export default configFn;
