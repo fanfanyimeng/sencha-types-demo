@@ -1,0 +1,73 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no" />
+    <title>数独游戏</title>
+    <link rel="Stylesheet" type="text/css" href="shudu.css" />
+    <style>
+        .page {
+            width: 649px;
+            margin-left: auto;
+            margin-right: auto;
+            border-collapse: collapse;
+            border: 1px solid #000000;
+        }
+
+        .page td {
+            width: 50%;
+            border-collapse: collapse;
+            border: 1px solid #000000;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script src="../jquery/1.8.1/jquery.min.js"></script>
+    <script>
+        String.prototype.times =
+            String.prototype.times ||
+            function (n) {
+                return (new Array(n + 1)).join(this);
+            };
+    </script>
+    <script src="shudu.js"></script>
+    <script>
+        var num = prompt("请输入难度（5-50）");
+        if (!isNaN(num)) {
+            num = parseInt(num);
+            num = num < 5 ? 5 : num;
+            num = num > 50 ? 50 : num;
+        } else {
+            num = 30;
+        }
+
+
+        alert('当前难度为：' + num);
+
+        //生成2数独，每页6个
+        var size = 1;
+        var count = 8;
+        for (var i = 0; i < size; i++) {
+
+            var html = "<table class='page'>";
+            for (var j = 0; j < (count / 2); j++) {
+                html += "<tr><td id='sd" + i + "-" + 2 * j + "'></td><td id='sd" + i + "-" + (2 * j + 1) + "'></td></tr>";
+            }
+            html += "</table>";
+            $("body").append(html);
+            if ((i + 1) < size) {
+                $("body").append('<div style="page-break-after: always;"></div>');
+            }
+
+            for (var j = 0; j < count; j++) {
+                var sd = new SD;
+                sd.init("#sd" + i + "-" + j, num);
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>
