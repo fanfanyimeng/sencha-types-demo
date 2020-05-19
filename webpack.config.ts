@@ -2,52 +2,60 @@ import webpack = require('webpack');
 import HtmlWebpackPlugin = require('html-webpack-plugin');
 import merge = require('webpack-merge');
 
-
-
-const definePage = (entry: string | string[] | webpack.Entry | webpack.EntryFunc,options?: HtmlWebpackPlugin.Options) => {
-    return {
-        entry: entry,
-        plugins: [
-            new HtmlWebpackPlugin(
-                options
-            )
-        ]
-    }
-}
-
 const configFn = (env: any, argv: any): webpack.Configuration[] => {
     const rootDir = __dirname;
     const publishPath = rootDir + "/build/publish/";
-    const buildJsName = "bundle.js";
     const envMode = argv.mode;
     console.info("如果需要修改webpack配置，请修改webpack.config.ts,不要修改webpack.config.js");
     console.info("测试一下" + rootDir);
     console.info(JSON.stringify(argv));
 
-    const pages = [  
-        definePage({
-            index: rootDir + "/src/index.ts"
-        },{
-            title: envMode === 'production' ? "JSON TOOL." : "JSON TOOL.(" + envMode + ")",
-            template: rootDir + '/public/index.html',
-            filename: publishPath + 'index.html',
-            chunks: ['index'],
-            inject: true,
-            hash: true
-        })
+    const pages: webpack.Configuration[] = [
+        {
+            entry: {
+                index: rootDir + "/src/index.ts",
+            },
+            plugins: [
+                new HtmlWebpackPlugin({
+                    title: envMode === 'production' ? "JSON TOOL." : "JSON TOOL.(" + envMode + ")",
+                    option:{
+                        extTag:envMode === 'production' ? "" : "-debug"
+                    },
+                    template: rootDir + '/public/index.html',
+                    filename: publishPath + 'index.html',
+                    chunks: ['index'],
+                    inject: true,
+                    hash: true
+                })
+            ]
+        },
+        {
+            entry: {
+                shudu: rootDir + "/src/shudu/index.ts",
+            },
+            plugins: [
+                new HtmlWebpackPlugin({
+                    title: envMode === 'production' ? "数独." : "数独.(" + envMode + ")",
+                    option:{
+                        extTag:envMode === 'production' ? "" : "-debug"
+                    },
+                    template: rootDir + '/public/index.html',
+                    filename: publishPath + 'shudu.html',
+                    chunks: ['shudu'],
+                    inject: true,
+                    hash: true
+                })
+            ]
+        }
     ];
 
-    
+
     const config: webpack.Configuration = {
-        //唯一入口文件
-        entry: {
-            index: rootDir + "/src/index.ts"
-        },
         output: {
             //打包后的文件存放的地方
             path: publishPath,
             //打包后输出文件的文件名
-            filename: buildJsName//打包后输出文件的文件名
+            filename: '[name].js'
         },
         devServer: {
             contentBase: rootDir + "/public"
@@ -67,7 +75,6 @@ const configFn = (env: any, argv: any): webpack.Configuration[] => {
         }
     };
 
-
-    return pages.map(page=>merge(config,page));
+    return pages.map(page => merge(config, page));
 }
 export default configFn;
