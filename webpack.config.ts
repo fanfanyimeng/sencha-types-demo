@@ -46,6 +46,21 @@ const configFn = (env: any, argv: any): webpack.Configuration[] => {
                     hash: true
                 })
             ]
+        },
+        {
+            entry: {
+                pinyin: rootDir + "/src/pinyin/index.ts",
+            },
+            plugins: [
+                new HtmlWebpackPlugin({
+                    title: envMode === 'production' ? "拼音." : "拼音.(" + envMode + ")",
+                    template: rootDir + '/public/pinyin.html',
+                    filename: publishPath + 'pinyin.html',
+                    chunks: ['pinyin'],
+                    inject: true,
+                    hash: true
+                })
+            ]
         }
     ];
 
