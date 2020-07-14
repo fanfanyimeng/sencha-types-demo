@@ -61,6 +61,21 @@ const configFn = (env: any, argv: any): webpack.Configuration[] => {
                     hash: true
                 })
             ]
+        },
+        {
+            entry: {
+                addReduce: rootDir + "/src/addReduce/index.ts",
+            },
+            plugins: [
+                new HtmlWebpackPlugin({
+                    title: envMode === 'production' ? "加减." : "加减.(" + envMode + ")",
+                    template: rootDir + '/public/addReduce.html',
+                    filename: publishPath + 'addReduce.html',
+                    chunks: ['addReduce'],
+                    inject: true,
+                    hash: true
+                })
+            ]
         }
     ];
 
