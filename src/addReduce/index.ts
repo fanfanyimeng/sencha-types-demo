@@ -104,7 +104,7 @@ class fnTool {
             fnTool["fn" + sumTypes[(Math.floor(Math.random() * 40) + 1) % sumTypesLen]];
         const item = genFn.call(null);
 
-        html += `<span class='${i%2==0? "s-left":"s-right"}'>${item}</span>` + ((i > 0 && i % 2) == 1 ? "<br/>" : "");
+        html += `<span class='${i%3==0? "s-left":"s-right"}'>${item}</span>` + ((i > 0 && i % 3) == 2 ? "<br/>" : "");
     }
     const htmlEl = document.getElementById("printArea");
     if (htmlEl != null) {
@@ -131,10 +131,10 @@ document.write(`<div id='menuArea'>
 <input type="checkbox" name="sumType" value="34" /> 三个数先减后加
 <br/>
 <br/>
-生成多少个(10~50)
-<input type="number" name="genCount" value="10"  min="10" max = "500" style="width:200px;"/> 
+生成多少个(10~500)
+<input type="number" name="genCount" value="75"  min="10" max = "500" style="width:200px;"/> 
 <input type="radio" name="genType" value="1" /> 顺序生成
-<input type="radio" name="genType" value="2" /> 乱序生成
+<input type="radio" name="genType" value="2" checked /> 乱序生成
 <br/><br/>
 <button onclick='window.generateFn()'>生成</button>
 <button onclick='javascript:window.print();'>打印</button>
