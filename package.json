@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "markdown-it": "^10.0.0",
+    "markdown-it": "^12.3.2",
     "sencha-types": "0.0.9"
   },
   "scripts": {
