@@ -76,6 +76,21 @@ const configFn = (env: any, argv: any): webpack.Configuration[] => {
                     hash: true
                 })
             ]
+        },
+        {
+            entry: {
+                multiplication: rootDir + "/src/multiplication/index.ts",
+            },
+            plugins: [
+                new HtmlWebpackPlugin({
+                    title: envMode === 'production' ? "乘除." : "乘除.(" + envMode + ")",
+                    template: rootDir + '/public/multiplication.html',
+                    filename: publishPath + 'multiplication.html',
+                    chunks: ['multiplication'],
+                    inject: true,
+                    hash: true
+                })
+            ]
         }
     ];
 

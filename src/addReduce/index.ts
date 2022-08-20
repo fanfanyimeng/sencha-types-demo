@@ -1,26 +1,45 @@
 
 class fnTool {
 
+    /**
+     * 两个数加法
+     */
     static fn21(): string {
-        var num1 = Math.floor(Math.random() * 50) + 1;
-        var num2 = Math.floor(Math.random() * 50) + 1;
+        var num1 = Math.floor(Math.random() * 100) + 1;
+        var num2 = Math.floor(Math.random() * 100) + 1;
+        while((num2 + num1) < 100){
+            num1 = num2 + num1;
+        }
         return `<li>${num1}</li><li class="operator">+</li><li>${num2}</li>`
         +`<li class="operator">=</li>`;
     }
+
+    /**
+     * 三个数加法
+     */
     static fn31(): string {
-        var num1 = Math.floor(Math.random() * 33) + 1;
-        var num2 = Math.floor(Math.random() * 33) + 1;
-        var num3 = Math.floor(Math.random() * 33) + 1;
+        var num1 = Math.floor(Math.random() * 100) + 1;
+        var num2 = Math.floor(Math.random() * 100) + 1;
+        var num3 = Math.floor(Math.random() * 100) + 1;
+
+        while((num2 + num1+ num3) < 100){
+            num1 = num2 + num1;
+            num3 = num2 + num3;
+        }
+
         return `<li>${num1}</li><li class="operator">+</li><li>${num2}</li>`
         +`<li class="operator">+</li><li>${num3}</li>`
         +`<li class="operator">=</li>`;
     }
 
 
-
+    /**
+     * 两个数减法
+     * @returns 
+     */
     static fn22(): string {
-        var num1 = Math.floor(Math.random() * 50) + 1;
-        var num2 = Math.floor(Math.random() * 50) + 1;
+        var num1 = Math.floor(Math.random() * 100) + 1;
+        var num2 = Math.floor(Math.random() * 100) + 1;
         var max = 0, min = 0;
         if (num1 > num2) {
             max = num1;
@@ -30,48 +49,72 @@ class fnTool {
             min = num1;
         }
 
+        while(max < 100){
+            max = max+min;
+        }
+
         return `<li>${max}</li><li class="operator">-</li><li>${min}</li><li class="operator">=</li>`;
     }
 
+    /**
+     * 三个数连减
+     * @returns 
+     */
     static fn32(): string {
         var num1 = 0;
         var num2 = 0;
         var num3 = 0;
-        num1 = Math.floor(Math.random() * 33) + 1;
-        num2 = Math.floor(Math.random() * 33) + 1;
-        num3 = Math.floor(Math.random() * 33) + 1;
+        num1 = Math.floor(Math.random() * 100) + 1;
+        num2 = Math.floor(Math.random() * 100) + 1;
+        num3 = Math.floor(Math.random() * 100) + 1;
+        while((num2 + num1+ num3) < 100){
+            num1 = num2 + num1;
+            num2 = num1 + num3;
+        }
 
         return `<li>${num1 + num2 + num3}</li><li class="operator">-</li><li>${num2}</li>`
         +`<li class="operator">-</li><li>${num3}</li><li class="operator">=</li>`;
     }
 
+    /**
+     * 三个数先加后减
+     * @returns 
+     */
     static fn33(): string {
         var num1 = 0;
         var num2 = 0;
         var num3 = 0;
-        num1 = Math.floor(Math.random() * 33) + 1;
-        num2 = Math.floor(Math.random() * 33) + 1;
+        num1 = Math.floor(Math.random() * 100) + 1;
+        num2 = Math.floor(Math.random() * 100) + 1;
         do {
-            num3 = Math.floor(Math.random() * 33) + 1;
+            num3 = Math.floor(Math.random() * 100) + 1;
         } while ((num1 + num2) < num3)
 
         return `<li>${num1 + num2 + num3}</li><li class="operator">+</li><li>${num2}</li>`
         +`<li class="operator">-</li><li>${num3}</li>`
         +`<li class="operator">=</li>`;
     }
+
+    /**
+     * 
+     * @returns 三个数先减后加
+     */
     static fn34(): string {
         var num1 = 0;
         var num2 = 0;
         var num3 = 0;
 
-        num1 = Math.floor(Math.random() * 50) + 1;
+        do {
+        num1 = Math.floor(Math.random() * 100) + 1;
+        }while(num1 < 20)
+        
 
         do {
-            num2 = Math.floor(Math.random() * 50) + 1;
+            num2 = Math.floor(Math.random() * 100) + 1;
         } while (num1 < num2)
 
 
-        num3 = Math.floor(Math.random() * 50) + 1;
+        num3 = Math.floor(Math.random() * 100) + 1;
 
         return `<li>${num1}</li><li class="operator">-</li><li>${num2}</li><li class="operator">+</li>`
         +`<li>${num3}</li><li class="operator">=</li>`;
@@ -104,7 +147,8 @@ class fnTool {
             fnTool["fn" + sumTypes[(Math.floor(Math.random() * 40) + 1) % sumTypesLen]];
         const item = genFn.call(null);
 
-        html += `<span class='${i%3==0? "s-left":"s-right"}'>${item}</span>` + ((i > 0 && i % 3) == 2 ? "<br/>" : "");
+        html += `<span class='${i%2==0? "s-left":"s-right"}'>${item}</span>`
+         + ((i > 0 && i % 2) == 1 ? "<br/>" : "");
     }
     const htmlEl = document.getElementById("printArea");
     if (htmlEl != null) {
@@ -132,7 +176,7 @@ document.write(`<div id='menuArea'>
 <br/>
 <br/>
 生成多少个(10~500)
-<input type="number" name="genCount" value="75"  min="10" max = "500" style="width:200px;"/> 
+<input type="number" name="genCount" value="50"  min="10" max = "500" style="width:200px;"/> 
 <input type="radio" name="genType" value="1" /> 顺序生成
 <input type="radio" name="genType" value="2" checked /> 乱序生成
 <br/><br/>
