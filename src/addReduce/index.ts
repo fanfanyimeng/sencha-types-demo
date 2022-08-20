@@ -7,18 +7,18 @@ class fnTool {
     static fn21(): string {
         var num1 = Math.floor(Math.random() * 100) + 1;
         var num2 = Math.floor(Math.random() * 100) + 1;
-        while((num2 + num1) < 100){
+        while ((num2 + num1) < 100) {
             num1 = num2 + num1;
         }
         return `<li>${num1}</li><li class="operator">+</li><li>${num2}</li>`
-        +`<li class="operator">=</li>`;
+            + `<li class="operator">=</li>`;
     }
 
-     /**
-     * 两个数减法
-     * @returns 
-     */
-      static fn22(): string {
+    /**
+    * 两个数减法
+    * @returns 
+    */
+    static fn22(): string {
         var num1 = Math.floor(Math.random() * 100) + 1;
         var num2 = Math.floor(Math.random() * 100) + 1;
         var max = 0, min = 0;
@@ -30,8 +30,8 @@ class fnTool {
             min = num1;
         }
 
-        while(max < 100){
-            max = max+min;
+        while (max < 100) {
+            max = max + min;
         }
 
         return `<li>${max}</li><li class="operator">-</li><li>${min}</li><li class="operator">=</li>`;
@@ -45,14 +45,14 @@ class fnTool {
         var num2 = Math.floor(Math.random() * 100) + 1;
         var num3 = Math.floor(Math.random() * 100) + 1;
 
-        while((num2 + num1+ num3) < 100){
+        while ((num2 + num1 + num3) < 100) {
             num1 = num2 + num1;
             num3 = num2 + num3;
         }
 
         return `<li>${num1}</li><li class="operator">+</li><li>${num2}</li>`
-        +`<li class="operator">+</li><li>${num3}</li>`
-        +`<li class="operator">=</li>`;
+            + `<li class="operator">+</li><li>${num3}</li>`
+            + `<li class="operator">=</li>`;
     }
 
     /**
@@ -62,26 +62,23 @@ class fnTool {
         var num1 = Math.floor(Math.random() * 10);
         var num2 = Math.floor(Math.random() * 10);
         return `<li>${num1}</li><li class="operator">+</li><li>${num2}</li>`
-        +`<li class="operator">=</li>`;
+            + `<li class="operator">=</li>`;
     }
 
-        /**
+    /**
      * 两个1位数相减
      */
-         static fn24(): string {
-            var num1 = Math.floor(Math.random() * 10);
-            var tmpNum = Math.floor(Math.random() * 10);
-            var num2 = tmpNum;
-            if(tmpNum > num1){
-                num2 = num1;
-                num1 = tmpNum;
-            }
-            return `<li>${num1}</li><li class="operator">-</li><li>${num2}</li>`
-            +`<li class="operator">=</li>`;
+    static fn24(): string {
+        var num1 = Math.floor(Math.random() * 10);
+        var tmpNum = Math.floor(Math.random() * 10);
+        var num2 = tmpNum;
+        if (tmpNum > num1) {
+            num2 = num1;
+            num1 = tmpNum;
         }
-
-
-   
+        return `<li>${num1}</li><li class="operator">-</li><li>${num2}</li>`
+            + `<li class="operator">=</li>`;
+    }
 
     /**
      * 三个数连减
@@ -94,13 +91,13 @@ class fnTool {
         num1 = Math.floor(Math.random() * 100) + 1;
         num2 = Math.floor(Math.random() * 100) + 1;
         num3 = Math.floor(Math.random() * 100) + 1;
-        while((num2 + num1+ num3) < 100){
+        while ((num2 + num1 + num3) < 100) {
             num1 = num2 + num1;
             num2 = num1 + num3;
         }
 
         return `<li>${num1 + num2 + num3}</li><li class="operator">-</li><li>${num2}</li>`
-        +`<li class="operator">-</li><li>${num3}</li><li class="operator">=</li>`;
+            + `<li class="operator">-</li><li>${num3}</li><li class="operator">=</li>`;
     }
 
     /**
@@ -118,8 +115,8 @@ class fnTool {
         } while ((num1 + num2) < num3)
 
         return `<li>${num1 + num2 + num3}</li><li class="operator">+</li><li>${num2}</li>`
-        +`<li class="operator">-</li><li>${num3}</li>`
-        +`<li class="operator">=</li>`;
+            + `<li class="operator">-</li><li>${num3}</li>`
+            + `<li class="operator">=</li>`;
     }
 
     /**
@@ -132,9 +129,9 @@ class fnTool {
         var num3 = 0;
 
         do {
-        num1 = Math.floor(Math.random() * 100) + 1;
-        }while(num1 < 20)
-        
+            num1 = Math.floor(Math.random() * 100) + 1;
+        } while (num1 < 20)
+
 
         do {
             num2 = Math.floor(Math.random() * 100) + 1;
@@ -144,13 +141,29 @@ class fnTool {
         num3 = Math.floor(Math.random() * 100) + 1;
 
         return `<li>${num1}</li><li class="operator">-</li><li>${num2}</li><li class="operator">+</li>`
-        +`<li>${num3}</li><li class="operator">=</li>`;
+            + `<li>${num3}</li><li class="operator">=</li>`;
+    }
+
+    /**
+     * 三个1位数相加
+     * @returns 
+     */
+    static fn35(): string {
+        var num1 = Math.floor(Math.random() * 10 );
+        var num2 = Math.floor(Math.random() * 10 );
+        var num3 = Math.floor(Math.random() * 10 );
+
+        
+
+        return `<li>${num1}</li><li class="operator">+</li><li>${num2}</li>`
+            + `<li class="operator">+</li><li>${num3}</li>`
+            + `<li class="operator">=</li>`;
     }
 };
 
 (<any>window).generateFn = () => {
 
-    const genCount:number =  Number(document.getElementsByName("genCount")[0]["value"]);
+    const genCount: number = Number(document.getElementsByName("genCount")[0]["value"]);
     var sumTypes: string[] | null[] = [];
     document.getElementsByName("sumType").forEach((value) => {
         if (value["checked"] === true) {
@@ -174,8 +187,8 @@ class fnTool {
             fnTool["fn" + sumTypes[(Math.floor(Math.random() * 40) + 1) % sumTypesLen]];
         const item = genFn.call(null);
 
-        html += `<span class='${i%2==0? "s-left":"s-right"}'>${item}</span>`
-         + ((i > 0 && i % 2) == 1 ? "<br/>" : "");
+        html += `<span class='${i % 2 == 0 ? "s-left" : "s-right"}'>${item}</span>`
+            + ((i > 0 && i % 2) == 1 ? "<br/>" : "");
     }
     const htmlEl = document.getElementById("printArea");
     if (htmlEl != null) {
@@ -200,6 +213,7 @@ document.write(`<div id='menuArea'>
 
 <br/>
 <input type="checkbox" name="sumType" value="31" /> 三个数连加
+<input type="checkbox" name="sumType" value="35" /> 三个一位数连加
 <input type="checkbox" name="sumType" value="32" /> 三个数连减
 <br/>
 <input type="checkbox" name="sumType" value="33" /> 三个数先加后减
