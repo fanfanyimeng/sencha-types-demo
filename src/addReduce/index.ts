@@ -14,6 +14,29 @@ class fnTool {
         +`<li class="operator">=</li>`;
     }
 
+     /**
+     * 两个数减法
+     * @returns 
+     */
+      static fn22(): string {
+        var num1 = Math.floor(Math.random() * 100) + 1;
+        var num2 = Math.floor(Math.random() * 100) + 1;
+        var max = 0, min = 0;
+        if (num1 > num2) {
+            max = num1;
+            min = num2;
+        } else {
+            max = num2;
+            min = num1;
+        }
+
+        while(max < 100){
+            max = max+min;
+        }
+
+        return `<li>${max}</li><li class="operator">-</li><li>${min}</li><li class="operator">=</li>`;
+    }
+
     /**
      * 三个数加法
      */
@@ -32,29 +55,33 @@ class fnTool {
         +`<li class="operator">=</li>`;
     }
 
-
     /**
-     * 两个数减法
-     * @returns 
+     * 两个1位数相加
      */
-    static fn22(): string {
-        var num1 = Math.floor(Math.random() * 100) + 1;
-        var num2 = Math.floor(Math.random() * 100) + 1;
-        var max = 0, min = 0;
-        if (num1 > num2) {
-            max = num1;
-            min = num2;
-        } else {
-            max = num2;
-            min = num1;
-        }
-
-        while(max < 100){
-            max = max+min;
-        }
-
-        return `<li>${max}</li><li class="operator">-</li><li>${min}</li><li class="operator">=</li>`;
+    static fn23(): string {
+        var num1 = Math.floor(Math.random() * 10);
+        var num2 = Math.floor(Math.random() * 10);
+        return `<li>${num1}</li><li class="operator">+</li><li>${num2}</li>`
+        +`<li class="operator">=</li>`;
     }
+
+        /**
+     * 两个1位数相减
+     */
+         static fn24(): string {
+            var num1 = Math.floor(Math.random() * 10);
+            var tmpNum = Math.floor(Math.random() * 10);
+            var num2 = tmpNum;
+            if(tmpNum > num1){
+                num2 = num1;
+                num1 = tmpNum;
+            }
+            return `<li>${num1}</li><li class="operator">-</li><li>${num2}</li>`
+            +`<li class="operator">=</li>`;
+        }
+
+
+   
 
     /**
      * 三个数连减
@@ -166,6 +193,10 @@ class fnTool {
 document.write(`<div id='menuArea'>
 <input type="checkbox" name="sumType" value="21" checked/> 两个数加法
 <input type="checkbox" name="sumType" value="22" /> 两个数减法
+
+<br/>
+<input type="checkbox" name="sumType" value="23" checked/> 两个个位数加法
+<input type="checkbox" name="sumType" value="24" /> 两个个位数减法
 
 <br/>
 <input type="checkbox" name="sumType" value="31" /> 三个数连加
